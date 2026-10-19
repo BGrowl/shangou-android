@@ -1,0 +1,24 @@
+# Local device configuration and generated runtime files
+config.json
+shangou-daemon.js
+autostart.flag
+test.flag
+locktest.flag
+daemon.heartbeat
+entry-status.json
+result.json
+results/
+logs/
+screenshots/
+shots/
+node_modules/
+*.apk
+*.zip
+*.before-*
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db

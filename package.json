@@ -1,0 +1,13 @@
+{
+  "name": "shangou-android",
+  "version": "7.1.0",
+  "description": "AutoX.js Android scheduled touch automation with session validation and evidence capture",
+  "license": "UNLICENSED",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node regression.cjs",
+    "check:syntax": "node scripts/check-syntax.cjs shangou.js",
+    "check:project": "node scripts/check-project.cjs",
+    "check": "npm run check:syntax && npm run check:project"
+  }
+}

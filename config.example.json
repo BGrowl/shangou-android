@@ -1,0 +1,173 @@
+{
+  "_说明": "历史1080×2340设备配置样例，不含登录凭据。首次使用必须核对页面、场次与坐标；设备或页面改版后需要重新校准。",
+  "_实测要点": {
+    "按钮坐标": "(899,849)，bounds [795,807,1002,891]，class=TextView",
+    "区域隔离": "场次条上的「17:00 已开抢」含「抢」且不含负向词，会被误判为可点；真按钮 y≈849，场次标签 y≈570~636，用 zone 隔开",
+    "活动页特征词": "满18可用 / 开学季限时抢 / 点我通知开抢 —— 这三个是活动页独有的，比「开学季」可靠",
+    "WebView类名": "com.uc.aosp.wk.m0（UC内核），不是 android.webkit.WebView"
+  },
+  "app": {
+    "package": "me.ele",
+    "launchNames": [
+      "淘宝闪购",
+      "饿了么"
+    ],
+    "readyKeywords": [
+      "满18可用",
+      "开学季限时抢",
+      "点我通知开抢",
+      "满18",
+      "限时抢",
+      "立即抢"
+    ],
+    "deepLink": "",
+    "homeEntryCoords": [
+      [
+        108,
+        777
+      ],
+      [
+        110,
+        578
+      ],
+      [
+        147,
+        860
+      ],
+      [
+        130,
+        720
+      ],
+      [
+        110,
+        900
+      ]
+    ],
+    "popupCloseCoords": [
+      [
+        536,
+        1895
+      ]
+    ],
+    "__homeEntryCoords说明": "首页那排图标全是图片，无障碍读不到任何节点，只能按坐标点。2026-10-17 14:45 实测：有「闪购会员日」banner 时学生福利中心 = (108,777)，准确进活动页；(147,860) 已失效。逐个试、点完验证是否进活动页，命中即停。",
+    "__popupCloseCoords说明": "冷启动会弹「天降红包待使用」全屏弹窗，整层图片，dump 里没有节点、没有 desc=关闭、back 关不掉，只能盲点 ×。实测 (536,1895) 一点即关。"
+  },
+  "sessions": [
+    "08:00",
+    "10:00",
+    "11:00",
+    "14:00",
+    "17:00",
+    "18:00",
+    "20:00"
+  ],
+  "timing": {
+    "prestageMs": 540000,
+    "enterBeforeMs": 300000,
+    "fireWindowMs": 10000,
+    "pressDurationMs": 10,
+    "pollIntervalMs": 25,
+    "maxClicks": 90,
+    "leadMs": 0,
+    "blindTapLeadMs": 20,
+    "reloginBeforeMs": 45000,
+    "firePlan": null,
+    "__说明": "默认使用定时连点：开抢前核验场次与坐标，校准整点起直接短按，不等待文字查询；开始后不逐次读状态，独立线程记录反馈，整点后10秒结束。",
+    "__maxClicks说明": "maxClicks仅用于state模式；blindMaxClicks=1000为连点异常保护上限，正常按10秒窗口结束。",
+    "__leadMs说明": "首击不早于校准整点；timerBurst不等按钮文案完成无障碍更新。",
+    "sentinelMs": 1500,
+    "sentinelGapMs": 15,
+    "notstartRefreshAfter": 25,
+    "refreshAfterMs": 4000,
+    "lockBeforeMs": 180000,
+    "clickGapMs": 250,
+    "pollGapMs": 15,
+    "__refreshAfterMs说明": "2026-10-17 14:40 演练补的护栏：notstartRefreshAfter=25 次 × ~40ms ≈ 整点后 1 秒就会触发强制刷新，而一次刷新（跳板+切回+2 次 sleep）要 2.2 秒，这期间不读不点。若服务端在 +1s~+3.2s 放开就被整段吞掉。加上「整点后至少 4 秒才允许刷新」，把头 4 秒完整留给纯轮询+出手。",
+    "__clickGapMs说明": "仅用于state模式；快速连点使用pressDurationMs及blindGapMs。",
+    "fireMode": "timerBurst",
+    "blindGapMs": 20,
+    "blindMaxClicks": 1000,
+    "captureFireFeedback": true,
+    "feedbackPollMs": 250,
+    "__fireMode说明": "timerBurst=校准整点触发连点；readyBurst=首次读到可抢后连点；blind=兼容旧定时连点配置；state=逐次状态判断。",
+    "__fireWindowMs说明": "2026-10-17 用户要求：20s 改 10s，够用就收，不用一直点到窗口末尾。",
+    "__blindGapMs说明": "短按返回后额外等待20ms。手机本地H5三轮对照中20ms与0ms的首次处理延迟中位数相同，保留20ms减少无效重复触控；这不代表真实领取接口的处理间隔。",
+    "readyPollMs": 10
+  },
+  "target": {
+    "positiveText": [
+      "立即抢",
+      "马上抢",
+      "抢券",
+      "抢"
+    ],
+    "negativeText": [
+      "18:00开抢",
+      "20:00开抢",
+      "08:00开抢",
+      "10:00开抢",
+      "11:00开抢",
+      "14:00开抢",
+      "17:00开抢",
+      "未开抢",
+      "已抢完",
+      "已错过",
+      "已领",
+      "抢光",
+      "已结束",
+      "活动结束",
+      "来晚",
+      "已抢到",
+      "恭喜",
+      "即将开始"
+    ],
+    "__negativeText说明": "带时间前缀的「xx:00开抢」是「未开始」状态的文案（点了也没用），所以列为负向；整点后文案一旦变化就会被正向量接住。若实测发现开抢后文案仍是「18:00开抢」不变化，把前 7 条删掉，改靠盲点通道出手。",
+    "negativeClass": [
+      "NOT_START",
+      "NO_INVENTORY",
+      "HAS_END",
+      "DISABLED",
+      "END"
+    ],
+    "boundsTolerancePx": 400,
+    "zone": {
+      "enabled": true,
+      "left": 640,
+      "top": 760,
+      "right": 1060,
+      "bottom": 940
+    }
+  },
+  "blindTap": {
+    "enabled": true,
+    "coord": [
+      899,
+      849
+    ],
+    "anchorText": "开学季红包",
+    "anchorCoord": [
+      588,
+      819
+    ],
+    "anchorTolerancePx": 60,
+    "__说明": "coord 是券按钮中心（bounds [795,807,1002,891]，2026-10-17 复核未变）。anchorText 用来校验页面结构没改版：『开学季红包』节点实测在 (588,819)，所以 anchorCoord 记录的是**锚点自己**的位置、用 anchorTolerancePx=60 比对。旧实现拿锚点坐标去比按钮坐标，由于两者本来就差 341px，每场都会打出『差 341px』这种假异常日志。"
+  },
+  "screenshots": false,
+  "__screenshots说明": "这台机器截图权限拿不到（No screen capture permission），每次失败耗约 200ms，正好卡在出手前的关键路径上，故关闭。",
+  "notify": {
+    "toast": true,
+    "vibrate": true,
+    "webhook": ""
+  },
+  "timeSync": {
+    "enabled": true,
+    "__说明": "每轮最多3次取样，优先最小RTT有效样本；单次总调用超时不超过2秒，总预算5秒。用安卓单调时钟维持校准，每场提前进场时再次取样。时间源与领取服务器并非必然完全一致。",
+    "urls": [
+      "https://acs.m.taobao.com/gw/mtop.common.getTimestamp/",
+      "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp",
+      "http://quan.suning.com/getSysTime.do"
+    ],
+    "samples": 3,
+    "budgetMs": 5000
+  }
+}

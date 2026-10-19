@@ -1,0 +1,13 @@
+{
+  "kind": "manually-curated-real-session-summary",
+  "date": "2026-10-19",
+  "timezone": "Asia/Shanghai",
+  "build": "codex-20261019-recovery-7.1",
+  "meaning": "Touch API calls and observed page states; no confirmed coupon claim or service error code.",
+  "sessions": [
+    { "session": "14:00", "touchApiCalls": 279, "acceptedTouchApiCalls": 279, "firstCallOffsetMs": 0.5, "lastCallOffsetMs": 9986.5, "observedMessages": ["本场活动还未开始"], "processingObserved": true, "finalButtonText": "立即抢", "verdict": "fired_no_confirm", "serviceErrorCode": null, "causeConfirmed": false },
+    { "session": "17:00", "touchApiCalls": 280, "acceptedTouchApiCalls": 280, "firstCallOffsetMs": 0, "lastCallOffsetMs": 9969, "observedMessages": ["本场活动还未开始"], "processingObserved": true, "finalButtonText": "立即抢", "verdict": "fired_no_confirm", "serviceErrorCode": null, "causeConfirmed": false },
+    { "session": "18:00", "touchApiCalls": 278, "acceptedTouchApiCalls": 278, "firstCallOffsetMs": 0.5, "lastCallOffsetMs": 9972.5, "observedMessages": ["本场活动还未开始", "活动太火爆了，请稍后再试"], "processingObserved": true, "finalButtonText": "立即抢", "verdict": "fired_no_confirm", "serviceErrorCode": null, "causeConfirmed": false },
+    { "session": "20:00", "touchApiCalls": 276, "acceptedTouchApiCalls": 276, "firstCallOffsetMs": 0.5, "lastCallOffsetMs": 9972.5, "observedMessages": ["本场活动还未开始", "活动太火爆了，请稍后再试"], "processingObserved": true, "finalButtonText": "立即抢", "verdict": "fired_no_confirm", "serviceErrorCode": null, "causeConfirmed": false }
+  ]
+}
